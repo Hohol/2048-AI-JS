@@ -71,7 +71,7 @@ GameManager.prototype.move = function(direction) {
       this.grid.computerMove();
     }
   } else {
-    this.won = true;
+    //this.won = true;
   }
 
   //console.log(this.grid.valueSum());
@@ -85,7 +85,7 @@ GameManager.prototype.move = function(direction) {
 
 // moves continuously until game is over
 GameManager.prototype.run = function() {
-  var best = this.ai.getBest();
+  var best = this.ai.getBest();  
   this.move(best.move);
   var timeout = animationDelay;
   if (this.running && !this.over && !this.won) {

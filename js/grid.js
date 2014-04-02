@@ -167,6 +167,10 @@ Grid.prototype.move = function (direction) {
 
   var cell, tile;
 
+  if(direction == undefined) {
+	var err = new Error();
+	console.log(err.stack);
+  }
   var vector     = this.getVector(direction);
   var traversals = this.buildTraversals(vector);
   var moved      = false;
@@ -391,6 +395,62 @@ Grid.prototype.smoothness = function() {
     }
   }
   return smoothness;
+}
+
+Grid.prototype.evalSnakeShape = function() {
+	    var r = 0;
+        var n = this.cells.length;
+        var m = this.cells[0].length;
+        /*var x = 0, y = 0;
+		var snakeEnded = false;
+		var nonSnakeMax = 0;
+        while (y != m) {
+            var nextX, nextY;
+            if (y % 2 == 0) {
+                if (x == n - 1) {
+                    nextX = x;
+                    nextY = y + 1;
+                } else {
+                    nextX = x + 1;
+                    nextY = y;
+                }
+            } else {
+                if (x == 0) {
+                    nextX = x;
+                    nextY = y + 1;
+                } else {
+                    nextX = x - 1;
+                    nextY = y;
+                }
+            }
+            if (this.cells[x][y] && this.cells[nextX][nextY] && this.cells[x][y].value >= this.cells[nextX][nextY].value) {				
+                if(!snakeEnded) {
+					r += this.cells[x][y].value;
+				} else {
+					nonSnakeMax = Math.max(nonSnakeMax, this.cells[x][y].value);
+				}
+            } else {
+                snakeEnded = true;
+            }
+            x = nextX;
+            y = nextY;
+        }
+		r -= nonSnakeMax;/**/
+		
+		var cnt = 0;
+		for (var x=0; x<4; x++) {
+			for (var y=0; y<4; y++) {
+				if(this.cells[x][y]) {
+					//cnt++;
+					if(y < 3 && this.cells[x][y] < this.cells[x][y+1]) {
+						r++;
+					}
+				}
+			}
+		}
+		r -= cnt * 0.1;
+		
+        return r;
 }
 
 Grid.prototype.monotonicity = function() {
