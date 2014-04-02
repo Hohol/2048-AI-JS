@@ -119,7 +119,7 @@ AI.prototype.search = function(depth, alpha, beta, positions, cutoffs) {
 
 // performs a search and returns the best move
 AI.prototype.getBest = function() {	
-	return this.findBestMove(this.grid, 10000);
+	return this.findBestMove(this.grid, 20000);
 }
 
 AI.prototype.findBestMove = function(grid, allowedCallCnt) {	

@@ -401,7 +401,7 @@ Grid.prototype.evalSnakeShape = function() {
 	    var r = 0;
         var n = this.cells.length;
         var m = this.cells[0].length;
-        /*var x = 0, y = 0;
+        var x = 0, y = 0;
 		var snakeEnded = false;
 		var nonSnakeMax = 0;
         while (y != m) {
@@ -441,9 +441,13 @@ Grid.prototype.evalSnakeShape = function() {
 		for (var x=0; x<4; x++) {
 			for (var y=0; y<4; y++) {
 				if(this.cells[x][y]) {
-					//cnt++;
-					if(y < 3 && this.cells[x][y] < this.cells[x][y+1]) {
-						r++;
+					cnt++;					
+				}
+				if(y < 3) {
+					var a = this.cells[x][y] ? this.cells[x][y].value : 0;
+					var b = this.cells[x][y+1] ? this.cells[x][y+1].value : 0;
+					if(a < b) {
+						r--
 					}
 				}
 			}
